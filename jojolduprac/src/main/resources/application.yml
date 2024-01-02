@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb; # 테스트 시에는 이거를 메모리로 바꾸면 된다., memory 모드 동작
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  profiles:
+    include: oauth
+
+  session: # 세션 유지를 위한 놈, JPA가 자동으로 세션 테이블을 생성한다.
+    store-type: jdbc
+
+  h2:
+    console.enabled: true
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create # create-drop으로 기본적으로 돌아감, 종료시점에 drop쿼리를 다 날림, 깔끔한 자원 정리
+      dialect: MySQL5InnoDBDialect
+    show_sql: true
+
+
+server:
+  servlet.encoding.force-response: true
